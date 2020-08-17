@@ -15,7 +15,9 @@ namespace Oefening5
         List<School> scholenList = new List<School>();
         public string[] studieJaarArr = new string[] { "Eerste", "Tweede", "Derde", "Vierde", "Vijde", "Zesde" };
 
-        int selectedSchool = 0;
+        int schoolIndex = 0;
+        int richtingIndex = 0;
+        int studentIndex = 0;
 
         public Form1()
         {
@@ -27,19 +29,48 @@ namespace Oefening5
             School newSchool1 = new School("KTA");
             School newSchool2 = new School("Immaculata");
 
-
             scholenList.Add(newSchool1);
             scholenList.Add(newSchool2);
 
-            UpdateSchoolList();
-            UpdateJaarList();
-            UpdateRichtingList(scholenList[cbSchool.SelectedIndex]);
-            UpdateLeerlingenList(scholenList[cbSchool.SelectedIndex].KlassenList[cbRichting.SelectedIndex]);
+            UpdateAll();
+
 
         }
         private void cbSchool_SelectedIndexChanged(object sender, EventArgs e)
         {
+            UpdateRichtingList(scholenList[cbSchool.SelectedIndex]);
+            UpdateLeerlingenList(scholenList[cbSchool.SelectedIndex].KlassenList[cbRichting.SelectedIndex]);
+            
+
+
         }
+        private void cbRichting_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateLeerlingenList(scholenList[cbSchool.SelectedIndex].KlassenList[cbRichting.SelectedIndex]);
+            
+
+        }
+        private void btnNewStudent_Click_1(object sender, EventArgs e)
+        {
+            scholenList[cbSchool.SelectedIndex].KlassenList[cbRichting.SelectedIndex].LeerlingenList.Add(new Leerling(txtAddStudent.Text));
+            UpdateLeerlingenList(scholenList[cbSchool.SelectedIndex].KlassenList[cbRichting.SelectedIndex]);
+            MessageBox.Show(scholenList[cbSchool.SelectedIndex].KlassenList[cbRichting.SelectedIndex].Name);
+
+        }
+        private void cbLeerling_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateVakkenList();
+        }
+        private void btnAddPunten_Click(object sender, EventArgs e)
+        {
+            scholenList[cbSchool.SelectedIndex].KlassenList[cbRichting.SelectedIndex].LeerlingenList[cbLeerling.SelectedIndex].MyRapport.VakkenList[cbVakken.SelectedIndex].puntenList.Add(Convert.ToDouble(txtAddPunten.Text));
+            UpdatePuntenList();
+        }
+        private void cbVakken_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdatePuntenList();
+        }
+
         private void UpdateSchoolList()
         {
             cbSchool.Items.Clear();
@@ -77,7 +108,7 @@ namespace Oefening5
         }
         private void UpdateLeerlingenList(Klas klas)
         {
-            if (klas.LeerlingenList.Count >0)
+            if (klas.LeerlingenList.Count > 0)
             {
                 cbLeerling.Items.Clear();
 
@@ -89,21 +120,31 @@ namespace Oefening5
                 cbLeerling.SelectedIndex = 0;
 
             }
-
-
-        }
-        private void button4_Click(object sender, EventArgs e)
-        {
-            NewStudent newStudent = new NewStudent();
-
-            newStudent.Show();
+            UpdateVakkenList();
 
         }
-
-        private void cbRichting_SelectedIndexChanged(object sender, EventArgs e)
+        private void UpdateVakkenList()
         {
+            cbVakken.DataSource = null;
+            cbVakken.DataSource = scholenList[cbSchool.SelectedIndex].KlassenList[cbRichting.SelectedIndex].LeerlingenList[cbLeerling.SelectedIndex].MyRapport.VakkenList;
+
+            //UpdatePuntenList();
+
+        }
+        private void UpdatePuntenList()
+        {
+            lbPunten.DataSource = null;
+            lbPunten.DataSource = scholenList[cbSchool.SelectedIndex].KlassenList[cbRichting.SelectedIndex].LeerlingenList[cbLeerling.SelectedIndex].MyRapport.VakkenList[cbVakken.SelectedIndex].puntenList;
+        }
+        private void UpdateAll()
+        {
+            UpdateSchoolList();
+            UpdateJaarList();
+            UpdateRichtingList(scholenList[cbSchool.SelectedIndex]);
             UpdateLeerlingenList(scholenList[cbSchool.SelectedIndex].KlassenList[cbRichting.SelectedIndex]);
-
+            UpdateVakkenList();
+            UpdatePuntenList();
         }
+
     }
 }

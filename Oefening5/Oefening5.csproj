@@ -65,6 +65,7 @@
     <Compile Include="RandomName.cs" />
     <Compile Include="Rapport.cs" />
     <Compile Include="School.cs" />
+    <Compile Include="Vak.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

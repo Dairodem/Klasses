@@ -36,15 +36,16 @@
             this.cbRichting = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.cbLeerling = new System.Windows.Forms.ComboBox();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btnNewStudent = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.comboBox5 = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.button5 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtMedian = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtAddPunten = new System.Windows.Forms.TextBox();
+            this.btnAddPunten = new System.Windows.Forms.Button();
+            this.lbPunten = new System.Windows.Forms.ListBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cbVakken = new System.Windows.Forms.ComboBox();
+            this.txtAddStudent = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -117,28 +118,29 @@
             this.cbLeerling.Name = "cbLeerling";
             this.cbLeerling.Size = new System.Drawing.Size(160, 21);
             this.cbLeerling.TabIndex = 6;
+            this.cbLeerling.SelectedIndexChanged += new System.EventHandler(this.cbLeerling_SelectedIndexChanged);
             // 
-            // button4
+            // btnNewStudent
             // 
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(233, 165);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(35, 23);
-            this.button4.TabIndex = 11;
-            this.button4.Text = "+";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.btnNewStudent.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNewStudent.Location = new System.Drawing.Point(234, 200);
+            this.btnNewStudent.Name = "btnNewStudent";
+            this.btnNewStudent.Size = new System.Drawing.Size(35, 23);
+            this.btnNewStudent.TabIndex = 11;
+            this.btnNewStudent.Text = "+";
+            this.btnNewStudent.UseVisualStyleBackColor = true;
+            this.btnNewStudent.Click += new System.EventHandler(this.btnNewStudent_Click_1);
             // 
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.groupBox1.Controls.Add(this.textBox2);
+            this.groupBox1.Controls.Add(this.txtMedian);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Controls.Add(this.button5);
-            this.groupBox1.Controls.Add(this.listBox1);
+            this.groupBox1.Controls.Add(this.txtAddPunten);
+            this.groupBox1.Controls.Add(this.btnAddPunten);
+            this.groupBox1.Controls.Add(this.lbPunten);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.comboBox5);
+            this.groupBox1.Controls.Add(this.cbVakken);
             this.groupBox1.Location = new System.Drawing.Point(287, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(224, 208);
@@ -146,47 +148,13 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Rapport";
             // 
-            // comboBox5
+            // txtMedian
             // 
-            this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Location = new System.Drawing.Point(79, 19);
-            this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(121, 21);
-            this.comboBox5.TabIndex = 0;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(28, 22);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(29, 13);
-            this.label5.TabIndex = 13;
-            this.label5.Text = "Vak:";
-            // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(31, 58);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(65, 134);
-            this.listBox1.TabIndex = 14;
-            // 
-            // button5
-            // 
-            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.Location = new System.Drawing.Point(175, 58);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(25, 20);
-            this.button5.TabIndex = 13;
-            this.button5.Text = "+";
-            this.button5.UseVisualStyleBackColor = true;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(102, 58);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(70, 20);
-            this.textBox1.TabIndex = 15;
+            this.txtMedian.Enabled = false;
+            this.txtMedian.Location = new System.Drawing.Point(102, 172);
+            this.txtMedian.Name = "txtMedian";
+            this.txtMedian.Size = new System.Drawing.Size(70, 20);
+            this.txtMedian.TabIndex = 17;
             // 
             // label6
             // 
@@ -197,21 +165,65 @@
             this.label6.TabIndex = 16;
             this.label6.Text = "Gemiddelde:";
             // 
-            // textBox2
+            // txtAddPunten
             // 
-            this.textBox2.Enabled = false;
-            this.textBox2.Location = new System.Drawing.Point(102, 172);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(70, 20);
-            this.textBox2.TabIndex = 17;
+            this.txtAddPunten.Location = new System.Drawing.Point(102, 58);
+            this.txtAddPunten.Name = "txtAddPunten";
+            this.txtAddPunten.Size = new System.Drawing.Size(70, 20);
+            this.txtAddPunten.TabIndex = 15;
+            // 
+            // btnAddPunten
+            // 
+            this.btnAddPunten.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddPunten.Location = new System.Drawing.Point(175, 58);
+            this.btnAddPunten.Name = "btnAddPunten";
+            this.btnAddPunten.Size = new System.Drawing.Size(25, 20);
+            this.btnAddPunten.TabIndex = 13;
+            this.btnAddPunten.Text = "+";
+            this.btnAddPunten.UseVisualStyleBackColor = true;
+            this.btnAddPunten.Click += new System.EventHandler(this.btnAddPunten_Click);
+            // 
+            // lbPunten
+            // 
+            this.lbPunten.FormattingEnabled = true;
+            this.lbPunten.Location = new System.Drawing.Point(31, 58);
+            this.lbPunten.Name = "lbPunten";
+            this.lbPunten.Size = new System.Drawing.Size(65, 134);
+            this.lbPunten.TabIndex = 14;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(28, 22);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(29, 13);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "Vak:";
+            // 
+            // cbVakken
+            // 
+            this.cbVakken.FormattingEnabled = true;
+            this.cbVakken.Location = new System.Drawing.Point(79, 19);
+            this.cbVakken.Name = "cbVakken";
+            this.cbVakken.Size = new System.Drawing.Size(121, 21);
+            this.cbVakken.TabIndex = 0;
+            this.cbVakken.SelectedIndexChanged += new System.EventHandler(this.cbVakken_SelectedIndexChanged);
+            // 
+            // txtAddStudent
+            // 
+            this.txtAddStudent.Location = new System.Drawing.Point(67, 200);
+            this.txtAddStudent.Name = "txtAddStudent";
+            this.txtAddStudent.Size = new System.Drawing.Size(160, 20);
+            this.txtAddStudent.TabIndex = 18;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(536, 243);
+            this.Controls.Add(this.txtAddStudent);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.btnNewStudent);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.cbLeerling);
             this.Controls.Add(this.lblRichting);
@@ -222,6 +234,7 @@
             this.Controls.Add(this.cbSchool);
             this.MinimizeBox = false;
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
@@ -241,15 +254,16 @@
         private System.Windows.Forms.ComboBox cbRichting;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cbLeerling;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btnNewStudent;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Button btnAddPunten;
+        private System.Windows.Forms.ListBox lbPunten;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox comboBox5;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.ComboBox cbVakken;
+        private System.Windows.Forms.TextBox txtMedian;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtAddPunten;
+        private System.Windows.Forms.TextBox txtAddStudent;
     }
 }
 
