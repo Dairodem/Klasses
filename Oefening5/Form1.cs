@@ -15,6 +15,8 @@ namespace Oefening5
         List<School> scholenList = new List<School>();
         public string[] studieJaarArr = new string[] { "Eerste", "Tweede", "Derde", "Vierde", "Vijde", "Zesde" };
 
+        int selectedSchool = 0;
+
         public Form1()
         {
             InitializeComponent();
@@ -25,9 +27,6 @@ namespace Oefening5
             School newSchool1 = new School("KTA");
             School newSchool2 = new School("Immaculata");
 
-            RandomName rndName = new RandomName();
-
-            Name = rndName.GetRandomName();
 
             scholenList.Add(newSchool1);
             scholenList.Add(newSchool2);
@@ -35,11 +34,11 @@ namespace Oefening5
             UpdateSchoolList();
             UpdateJaarList();
             UpdateRichtingList(scholenList[cbSchool.SelectedIndex]);
+            UpdateLeerlingenList(scholenList[cbSchool.SelectedIndex].KlassenList[cbRichting.SelectedIndex]);
 
         }
         private void cbSchool_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //update leerlingen list op basis van school, jaar, klas.
         }
         private void UpdateSchoolList()
         {
@@ -76,6 +75,35 @@ namespace Oefening5
             cbRichting.SelectedIndex = 0;
 
         }
+        private void UpdateLeerlingenList(Klas klas)
+        {
+            if (klas.LeerlingenList.Count >0)
+            {
+                cbLeerling.Items.Clear();
 
+                foreach (Leerling leerling in klas.LeerlingenList)
+                {
+                    cbLeerling.Items.Add(leerling.Name);
+                }
+
+                cbLeerling.SelectedIndex = 0;
+
+            }
+
+
+        }
+        private void button4_Click(object sender, EventArgs e)
+        {
+            NewStudent newStudent = new NewStudent();
+
+            newStudent.Show();
+
+        }
+
+        private void cbRichting_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateLeerlingenList(scholenList[cbSchool.SelectedIndex].KlassenList[cbRichting.SelectedIndex]);
+
+        }
     }
 }

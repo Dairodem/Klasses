@@ -9,10 +9,15 @@ namespace Oefening5
     class Klas
     {
         public string Name { get; set; }
-        public List<Leerling> LeerlingenList { get; }
+        public List<Leerling> LeerlingenList { get; set; }
+        RandomName rndName = new RandomName();
         public Klas(string name)
         {
+            LeerlingenList = new List<Leerling>();
+
+            string stName = rndName.GetRandomName();
             Name = name;
+            AddStudent(new Leerling(stName));
         }
         public void AddStudent(Leerling student)
         {
